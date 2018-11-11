@@ -43,9 +43,9 @@ public class GeraInterface {
 		bw.append("public interface "+ objeto +"DAO {" + "\n");
 		bw.newLine();
 		bw.newLine();
-		bw.append("   public boolean insere(" + objeto +", " + objeto.toLowerCase() + ") ; " + "\n");
+		bw.append("   public boolean insere(" + objeto +" " + objeto.toLowerCase() + ") ; " + "\n");
 		bw.newLine();
-		bw.append("   public boolean atualiza(" + objeto +", " + objeto.toLowerCase() + ") ; " + "\n");
+		bw.append("   public boolean atualiza(" + objeto +" " + objeto.toLowerCase() + ") ; " + "\n");
 		bw.newLine();
 		bw.append("   public List<"+ objeto +"> lista(** atualizar parametros**); " + "\n");
 		bw.newLine();

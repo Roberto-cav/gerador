@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import br.com.Gerador.GeraController;
 import br.com.Gerador.GeraDAOImpl;
 import br.com.Gerador.GeraInterface;
 import br.com.Gerador.GeraObjetoJava;
@@ -16,12 +17,12 @@ public class GeradorJava {
 	public static void main(String[] args) throws SQLException, Exception {
 
 		String schema = "oper21";
-		String tabela = "produtos";
+		String tabela = "tipos_beneficiarios";
 		
 		criaObjetoJava(listaColunas(schema, tabela));
 		criaInterfaceDAO(listaConsColumn(schema, tabela));
 		criaDAOImpl(listaColunas(schema, tabela), listaConsColumn(schema, tabela));
-		//criaControllerInicial();
+		criaControllerInicial(tabela);
 		//criaHtmlInicial();
 	}
 
@@ -60,5 +61,10 @@ public class GeradorJava {
 		System.out.println("Classe DAOImpl criada com sucesso!");
 	}
 	
-	
+	private static void criaControllerInicial(String tabela) throws SQLException, Exception {
+		System.out.println("criando classe Controller...");
+		GeraController ctrl = new GeraController();
+		ctrl.geraController(tabela);
+		System.out.println("Classe Controller criada com sucesso");
+	}
 }

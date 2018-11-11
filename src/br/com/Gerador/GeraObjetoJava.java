@@ -28,6 +28,7 @@ public class GeraObjetoJava {
 		String tipoJava     = "";
 		String coluna		= "";
 		String colunaMetodo	= "";
+		String nullAble     = "";
 		
 		BufferedWriter bw = new BufferedWriter(new FileWriter(path));
 		bw.append("package br.com.oper21.x"  + "\n");

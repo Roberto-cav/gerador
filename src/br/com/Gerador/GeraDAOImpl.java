@@ -74,7 +74,7 @@ public class GeraDAOImpl {
 		bw.newLine();
 		bw.newLine();
 		
-		bw.append("   public " + objeto + "DAOImple(DataSource datasouce) {");
+		bw.append("   public " + objeto + "DAOImple(DataSource datasource) {");
 		bw.newLine();
 		bw.append("      jdbcTemplate = new JdbcTemplate(datasource); ");
 		bw.newLine();
@@ -99,7 +99,7 @@ public class GeraDAOImpl {
 		}
 		bw.append(")'; " + "\n");
 		bw.newLine();
-		bw.append("       sql = sql + 'values( ");
+		bw.append("       sql = sql + ' values( ");
 		
 		
 		for (int i=0; i<lista.size(); i++) {
@@ -133,7 +133,7 @@ public class GeraDAOImpl {
 		}
 		bw.append("         resultado = true; "+"\n");
 		bw.newLine();
-		bw.append("      } catch(Excepton e) {" + "\n");
+		bw.append("      } catch(Exception e) {" + "\n");
 		bw.newLine();
 		bw.append("         resultado = false; "+ "\n");
 		bw.newLine();
@@ -141,7 +141,7 @@ public class GeraDAOImpl {
 		bw.newLine();
 		bw.append("         System.out.println(e.getMessage()); "+ "\n" );
 		bw.newLine();
-		bw.append("         e.printStackTrace()); "+ "\n" );
+		bw.append("         System.out.println(e.printStackTrace()); "+ "\n" );
 		bw.newLine();
 		bw.append("      }" + "\n");
 		bw.newLine();
@@ -154,29 +154,31 @@ public class GeraDAOImpl {
 		
 
 		
-		bw.append("   public boolean atualiza(" + objeto +", " + objeto.toLowerCase() + ") { " + "\n");
+		bw.append("   public boolean atualiza(" + objeto +" " + objeto.toLowerCase() + ") { " + "\n");
 		bw.newLine();
 		bw.append("      boolean resultado = false; ");
 		bw.newLine();
 		bw.newLine();
-		bw.append("      String sql = 'update "+tabela+" set");
+		bw.append("      String sql = 'update "+tabela+" set ';");
 		bw.newLine();
 		for (int i=0; i<lista.size(); i++) {
 			coluna = lista.get(i).getColumnName();
 			
-			bw.append( "                       " + coluna + "=?" );
+			bw.append( "      sql = sql + ' " + coluna + "=?" );
 
 			if (i<lista.size()-1) {
-				bw.append(",");
+				bw.append(",';");
+			} else {
+				bw.append("';");
 			}
 			bw.newLine();
 		}
 
-		bw.append("        	    where ");
+		bw.append("      sql = sql + ' where '; ");
 		bw.newLine();
 		for (int i=0; i<listaConsColumn.size(); i++) {
 			colunaChave = listaConsColumn.get(i).getColumnName();
-			bw.append( "                        " + colunaChave + "=? " );
+			bw.append( "      sql = sql + ' " + colunaChave + "=? " );
 			if (i<listaConsColumn.size()-1) {
 				bw.append(" and ");
 			}
@@ -210,7 +212,7 @@ public class GeraDAOImpl {
 			if (i<listaConsColumn.size()-1) {
 				bw.append("," + "  "   +"\n");
 			} else {
-				bw.append(")" + "  "   +"\n");
+				bw.append(");" + "  "   +"\n");
 			}
 			bw.newLine();
 		}
@@ -218,7 +220,7 @@ public class GeraDAOImpl {
 		
 		bw.append("         resultado = true; "+"\n");
 		bw.newLine();
-		bw.append("      } catch(Excepton e) {" + "\n");
+		bw.append("      } catch(Exception e) {" + "\n");
 		bw.newLine();
 		bw.append("         resultado = false; "+ "\n");
 		bw.newLine();
@@ -226,7 +228,7 @@ public class GeraDAOImpl {
 		bw.newLine();
 		bw.append("         System.out.println(e.getMessage()); "+ "\n" );
 		bw.newLine();
-		bw.append("         e.printStackTrace()); "+ "\n" );
+		bw.append("         System.out.println(e.printStackTrace()); "+ "\n" );
 		bw.newLine();
 		bw.append("      }" + "\n");
 		bw.newLine();

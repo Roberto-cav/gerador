@@ -54,7 +54,7 @@ public class Util {
 		if (pos > -1) {
 			while (pos > -1) {
 
-				newColuna = oldColuna.substring(0, pos);
+				newColuna = retornaSingular(oldColuna.substring(0, pos));
 				parte2 = oldColuna.substring(pos+1, oldColuna.length());
 				parte2 = setInitCap(parte2);
 	

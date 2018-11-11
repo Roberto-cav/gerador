@@ -18,11 +18,11 @@ public class ConexaoMySQL {
 		try {
 			String driverName = "com.mysql.jdbc.Driver";
 			Class.forName(driverName);
-			String serverName = "oper21.curh5wtuoyvp.sa-east-1.rds.amazonaws.com:3306";
+			String serverName = "localhost:3306";
 			String database   = "oper21";
 			String url = "jdbc:mysql://"+ serverName + "/" + database;
-			String userName = "oper21";
-			String password = "Rc080570";
+			String userName = "root";
+			String password = "1234";
 			
 			connection = DriverManager.getConnection(url, userName, password);
 			
