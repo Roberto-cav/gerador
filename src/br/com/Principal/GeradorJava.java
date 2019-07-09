@@ -8,6 +8,7 @@ import br.com.Gerador.GeraController;
 import br.com.Gerador.GeraDAOImpl;
 import br.com.Gerador.GeraInterface;
 import br.com.Gerador.GeraObjetoJava;
+import br.com.Gerador.GeraService;
 import br.com.Gerador.InformationSchema;
 import br.com.Objeto.Column;
 import br.com.Objeto.ConsColumn;
@@ -17,12 +18,13 @@ public class GeradorJava {
 	public static void main(String[] args) throws SQLException, Exception {
 
 		String schema = "oper21";
-		String tabela = "tipos_beneficiarios";
+		String tabela = "produtos";
 		
 		criaObjetoJava(listaColunas(schema, tabela));
 		criaInterfaceDAO(listaConsColumn(schema, tabela));
 		criaDAOImpl(listaColunas(schema, tabela), listaConsColumn(schema, tabela));
-		criaControllerInicial(tabela);
+		criaInterfaceService(listaConsColumn(schema, tabela));
+		//criaControllerInicial(tabela);
 		//criaHtmlInicial();
 	}
 
@@ -67,4 +69,12 @@ public class GeradorJava {
 		ctrl.geraController(tabela);
 		System.out.println("Classe Controller criada com sucesso");
 	}
+	
+	private static void criaInterfaceService(List<ConsColumn> lista) throws SQLException, Exception {
+		System.out.println("Criando inteface Service...");
+		GeraService srv = new GeraService();
+		srv.geraService(lista);
+		System.out.println("Interface Service criada com sucesso!");
+	}
+
 }
